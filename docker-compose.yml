@@ -1,0 +1,44 @@
+version: "3.2"
+services:
+  api:
+    build:
+      dockerfile: "./docker/Dockerfile.dev"
+      context: ./hawk.api.nodejs
+    user: "node"
+    volumes:
+      - ./hawk.api.nodejs:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - JWT_SECRET=abacaba
+      - JWT_SECRET_EVENTS=qwerty
+      - PLAYGROUND_ENABLE=true
+      - MONGO_HAWK_DB_URL=mongodb://mongodb:27017/hawk
+      - MONGO_EVENTS_DB_URL=mongodb://mongodb:27017/hawk_events
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongodb
+    stdin_open: true
+    tty: true
+
+  mongodb:
+    image: mongo
+    volumes:
+      - mongodata:/data/db
+      - ./hawk.api.nodejs/docker/mongo-init.js:/scripts/mongo-init.js
+    ports:
+      - 27017:27017
+    command: --bind_ip_all --replSet rs0
+
+  registry:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    volumes:
+      - ./hawk.registry/config/rabbit.definitions.json:/tmp/rabbit.definitions.json:ro
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_management load_definitions "/tmp/rabbit.definitions.json"
+
+volumes:
+  mongodata:
