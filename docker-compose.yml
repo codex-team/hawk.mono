@@ -43,7 +43,7 @@ services:
       - api
 
   rabbitmq:
-    image: rabbitmq:3setup compose config for registry, api and mongodb-management
+    image: rabbitmq:3-management
     ports:
       - 15672:15672
       - 5672:5672
@@ -52,14 +52,14 @@ services:
     environment:
       - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_management load_definitions "/tmp/rabbit.definitions.json"
 
-#  collector:
-#    build: ./hawk.catcher
-#    ports:
-#      - 3000:3000
-#    volumes:
-#      - ./hawk.catcher/tests/docker-config.json:/app/docker-config.json
-#    depends_on:
-#      - rabbitmq
+  collector:
+    build: ./hawk.catcher
+    ports:
+      - 3000:3000
+    volumes:
+      - ./hawk.catcher/tests/docker-config.json:/app/docker-config.json
+    depends_on:
+      - rabbitmq
 
 volumes:
   mongodata:
