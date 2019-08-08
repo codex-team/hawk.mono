@@ -3,10 +3,10 @@ services:
   api:
     build:
       dockerfile: "./docker/Dockerfile.dev"
-      context: ./hawk.api.nodejs
+      context: ./api
     user: "node"
     volumes:
-      - ./hawk.api.nodejs:/usr/src/app
+      - ./api:/usr/src/app
       - /usr/src/app/node_modules
     environment:
       - JWT_SECRET=abacaba
@@ -25,7 +25,7 @@ services:
     image: mongo
     volumes:
       - mongodata:/data/db
-      - ./hawk.api.nodejs/docker/mongo-init.js:/scripts/mongo-init.js
+      - ./api/docker/mongo-init.js:/scripts/mongo-init.js
     ports:
       - 27017:27017
     command: --bind_ip_all --replSet rs0
@@ -33,9 +33,9 @@ services:
   garage:
     build:
       dockerfile: Dockerfile.dev
-      context: ./hawk.garage
+      context: ./garage
     volumes:
-      - ./hawk.garage:/app
+      - ./garage:/app
       - /app/node_modules
     ports:
       - 8080:8080
@@ -48,16 +48,16 @@ services:
       - 15672:15672
       - 5672:5672
     volumes:
-      - ./hawk.registry/config/rabbit.definitions.json:/tmp/rabbit.definitions.json:ro
+      - ./registry/config/rabbit.definitions.json:/tmp/rabbit.definitions.json:ro
     environment:
       - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_management load_definitions "/tmp/rabbit.definitions.json"
 
   collector:
-    build: ./hawk.catcher
+    build: ./collector
     ports:
       - 3000:3000
     volumes:
-      - ./hawk.catcher/tests/docker-config.json:/app/docker-config.json
+      - ./collector/tests/docker-config.json:/app/docker-config.json
     depends_on:
       - rabbitmq
 
