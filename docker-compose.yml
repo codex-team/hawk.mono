@@ -30,8 +30,20 @@ services:
       - 27017:27017
     command: --bind_ip_all --replSet rs0
 
-  registry:
-    image: rabbitmq:3-management
+  garage:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./hawk.garage
+    volumes:
+      - ./hawk.garage:/app
+      - /app/node_modules
+    ports:
+      - 8080:8080
+    depends_on:
+      - api
+
+  rabbitmq:
+    image: rabbitmq:3setup compose config for registry, api and mongodb-management
     ports:
       - 15672:15672
       - 5672:5672
@@ -39,6 +51,15 @@ services:
       - ./hawk.registry/config/rabbit.definitions.json:/tmp/rabbit.definitions.json:ro
     environment:
       - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_management load_definitions "/tmp/rabbit.definitions.json"
+
+#  collector:
+#    build: ./hawk.catcher
+#    ports:
+#      - 3000:3000
+#    volumes:
+#      - ./hawk.catcher/tests/docker-config.json:/app/docker-config.json
+#    depends_on:
+#      - rabbitmq
 
 volumes:
   mongodata:
