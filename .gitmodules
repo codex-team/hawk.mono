@@ -1,15 +1,15 @@
 [submodule "hawk.api.nodejs"]
-	path = hawk.api.nodejs
+	path = api
 	url = https://github.com/codex-team/hawk.api.nodejs
 [submodule "hawk.garage"]
-	path = hawk.garage
+	path = garage
 	url = https://github.com/codex-team/hawk.garage
 [submodule "hawk.catcher"]
-	path = hawk.catcher
+	path = collector
 	url = https://github.com/codex-team/hawk.catcher
 [submodule "hawk.registry"]
-	path = hawk.registry
+	path = registry
 	url = https://github.com/codex-team/hawk.registry
 [submodule "hawk.javascript"]
-	path = hawk.javascript
+	path = catchers/javascript
 	url = https://github.com/codex-team/hawk.javascript
