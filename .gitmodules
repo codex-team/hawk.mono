@@ -4,12 +4,12 @@
 [submodule "hawk.garage"]
 	path = garage
 	url = https://github.com/codex-team/hawk.garage
-[submodule "hawk.catcher"]
-	path = collector
-	url = https://github.com/codex-team/hawk.catcher
 [submodule "hawk.registry"]
 	path = registry
 	url = https://github.com/codex-team/hawk.registry
 [submodule "hawk.javascript"]
 	path = catchers/javascript
 	url = https://github.com/codex-team/hawk.javascript
+[submodule "collector"]
+	path = collector
+	url = https://github.com/codex-team/hawk.collector
