@@ -18,3 +18,7 @@
 	path = collector
 	url = https://github.com/codex-team/hawk.collector
 	branch = master
+[submodule "workers"]
+	path = workers
+	url = https://github.com/codex-team/hawk.workers
+	branch = master
