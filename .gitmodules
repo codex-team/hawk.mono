@@ -22,3 +22,6 @@
 	path = workers
 	url = https://github.com/codex-team/hawk.workers
 	branch = master
+[submodule "merchant.worker"]
+	path = merchant.worker
+	url = https://github.com/codex-team/hawk.merchant.worker
