@@ -61,5 +61,13 @@ services:
     depends_on:
       - rabbitmq
 
+  merchant-worker:
+    build: ./merchant.worker
+    volumes:
+      - ./merchant.worker/.env:/app/.env
+    depends_on:
+      - rabbitmq
+      - mongodb
+
 volumes:
   mongodata:
