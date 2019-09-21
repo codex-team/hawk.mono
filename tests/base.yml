@@ -1,0 +1,15 @@
+version: "3.2"
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    volumes:
+      - ../registry/config/rabbit.definitions.json:/tmp/rabbit.definitions.json:ro
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_management load_definitions "/tmp/rabbit.definitions.json"
+
+volumes:
+  mongodata:
