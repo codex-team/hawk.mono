@@ -7,13 +7,8 @@ services:
     user: "node"
     volumes:
       - ./api:/usr/src/app
+      - ./api/.env:/usr/src/app/.env
       - /usr/src/app/node_modules
-    environment:
-      - JWT_SECRET=abacaba
-      - JWT_SECRET_EVENTS=qwerty
-      - PLAYGROUND_ENABLE=true
-      - MONGO_HAWK_DB_URL=mongodb://mongodb:27017/hawk
-      - MONGO_EVENTS_DB_URL=mongodb://mongodb:27017/hawk_events
     ports:
       - 4000:4000
     depends_on:
@@ -25,10 +20,8 @@ services:
     image: mongo
     volumes:
       - mongodata:/data/db
-      - ./api/docker/mongo-init.js:/scripts/mongo-init.js
     ports:
       - 27017:27017
-    command: --bind_ip_all --replSet rs0
 
   garage:
     build:
