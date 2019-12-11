@@ -46,9 +46,14 @@ If you don't have a projects yes, create one:
 
 1. From the `hawk.mono` directory go to `catchers/javascirpt` directory
 2. Make sure you are on `hawk2.0` branch. Switch branch if you are on `master`
-3. Run `yarn` to install dependencies
-4. Run `yarn dev` to run testing page
-5. You should see the testing page on `http://localhost:9000` or something like that.
+3. Open `example/index.html` im your IDE and put an Integration Token to the initialization of HawkCatcher at `token` property:
+
+![](https://capella.pics/3c24e9c0-b8a8-40b3-a291-ef00991138ff.jpg)
+
+4. Go back to terminal, make sure you are still in the `catchers/javascirpt` directory
+5. Run `yarn` to install dependencies
+6. Run `yarn dev` to run testing page
+7. You should see the testing page on `http://localhost:9000` or something like that.
 
 ## 5. Make sure that Catcher is connected to the Collector
 
