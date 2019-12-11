@@ -1,17 +1,22 @@
+
 Hawk mono repository for development needs
 
-# Init modules
+## How to run
 
 1. Run `git submodule init && git submodule update`.
 2. Create `.env` file in those repositories where there is `.env.sample` file.
 3. Run `docker-compose up` to run all hawk services or list only the necessary services in the command above.
 
+## Documentation
 
-# Troubleshooting
+- [How to send testing events to the local hawk](docs/how-to-get-events.md)
+- [How to view Registry queues](docs/how-to-view-registry-queues.md)
+
+## Troubleshooting
 
 If something went wrong, check this items.
 
-## `docker-compose up` failed
+### `docker-compose up` failed
 
 Try this commands:
 
