@@ -18,7 +18,6 @@ If you need to get event on the local version on Hawk, follow these steps.
 If you don't see one or several containers, it means they are not running. 
 Probably, some error occurs — you should resolve them first.
 
-
 ## 2. Make sure the Garage is ready
 
 1. Go to http://localhost:8080 
@@ -46,9 +45,10 @@ If you don't have a projects yes, create one:
 ## 4. Run JavaScript catcher testing page
 
 1. From the `hawk.mono` directory go to `catchers/javascirpt` directory
-2. Run `yarn` to install dependencies
-3. Run `yarn dev` to run testing page
-4. You should see the testing page on `http://localhost:9000` or something like that.
+2. Make sure you are on `hawk2.0` branch. Switch branch if you are on `master`
+3. Run `yarn` to install dependencies
+4. Run `yarn dev` to run testing page
+5. You should see the testing page on `http://localhost:9000` or something like that.
 
 ## 5. Make sure that Catcher is connected to the Collector
 
