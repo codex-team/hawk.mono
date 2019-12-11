@@ -50,18 +50,18 @@ If you don't have a projects yes, create one:
 3. Run `yarn dev` to run testing page
 4. You should see the testing page on `http://localhost:9000` or something like that.
 
-![](https://capella.pics/5f400b8b-3590-4ff7-b5ef-a0386a30ae89.jpg)
-
 ## 5. Make sure that Catcher is connected to the Collector
 
 1. On the testing page, open JS Console — there should be no errors
 2. Go to `Network` tab and make sure there is a WebSocket connection called `ws` (not a `websocket`)
 
+![](https://capella.pics/5f400b8b-3590-4ff7-b5ef-a0386a30ae89.jpg)
+
 Now you can send events to the Collector by clicking on buttons on testing page. 
 
 3. Click on the `hawk.test()` button.
 
-![](https://capella.pics/5f400b8b-3590-4ff7-b5ef-a0386a30ae89.jpg)
+![](https://capella.pics/c29f7584-d674-499c-830c-59272fdbad7d.jpg)
 
 ## 6. Make sure that Collector accepts events and pass them to the Registry
 
