@@ -41,12 +41,16 @@ If you don't have a projects yes, create one:
 6. Click on the new created project, select a Catcher
 7. Copy your `Integration Token` from the Catcher Instructions page
 
+![](https://capella.pics/65608213-f333-4977-9da5-b64c5af7afda.jpg)
+
 ## 4. Run JavaScript catcher testing page
 
 1. From the `hawk.mono` directory go to `catchers/javascirpt` directory
 2. Run `yarn` to install dependencies
 3. Run `yarn dev` to run testing page
 4. You should see the testing page on `http://localhost:9000` or something like that.
+
+![](https://capella.pics/5f400b8b-3590-4ff7-b5ef-a0386a30ae89.jpg)
 
 ## 5. Make sure that Catcher is connected to the Collector
 
@@ -56,6 +60,8 @@ If you don't have a projects yes, create one:
 Now you can send events to the Collector by clicking on buttons on testing page. 
 
 3. Click on the `hawk.test()` button.
+
+![](https://capella.pics/5f400b8b-3590-4ff7-b5ef-a0386a30ae89.jpg)
 
 ## 6. Make sure that Collector accepts events and pass them to the Registry
 
@@ -110,3 +116,5 @@ In previous part, the Grouper Worker should save the event to the Events DB. Let
 ## 9. Check the Garage for new event
 
 Open the Garage on Project's page. The testing event `Hawk JavaScript Catcher test message.` should be there.
+
+![](https://capella.pics/1b48e631-84fe-407e-997c-a7d0d7d0a36c.jpg)
