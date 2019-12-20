@@ -1,10 +1,14 @@
 ## Prepare environment
 ```
-docker-compose -f .\base.yml -f .\collector.yml up -d rabbitmq
-docker-compose -f .\base.yml -f .\collector.yml up -d collector
+docker-compose -f base.yml up -d 
 ```
 
-## Run tests
+## Run integration tests
 ```
-docker-compose -f .\base.yml -f .\collector.yml run --rm integration-test
+docker-compose -f base.yml -f collector.yml run --rm integration-test
+```
+
+## Clear after run
+```
+docker-compose -f collector.yml down
 ```

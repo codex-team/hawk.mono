@@ -34,5 +34,6 @@ class TestStringMethods(unittest.TestCase):
         response = json.loads(requests.post("http://collector:3000/", data=json.dumps({"payload": "", "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0SWQiOiJwcm9qSUQiLCJpYXQiOjE1NjcxMDQ4NDF9.nJveSAXwd38yCSG2PjOjBbQRmWtBtM6x7JWjshwl-sY", "CatcherType": "errors/python"})).text)
         self.assertEqual(response['error'], False)
 
+
 if __name__ == '__main__':
     unittest.main()
