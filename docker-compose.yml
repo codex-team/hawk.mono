@@ -62,7 +62,7 @@ services:
       - $HOME/.ssh:/root/ssh:ro
     environment:
       TUNNEL_HOST: quantum
-      REMOTE_HOST: 192.168.192.2
+      REMOTE_HOST: 172.26.0.2
       LOCAL_PORT: 27017
       REMOTE_PORT: 27017
 volumes:
