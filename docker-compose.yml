@@ -10,7 +10,7 @@ services:
       - ./api/.env:/usr/src/app/.env
       - /usr/src/app/node_modules
     ports:
-      - 4000:4000
+      - 4000:3000
     depends_on:
       - mongodb
     stdin_open: true
@@ -22,6 +22,13 @@ services:
       - mongodata:/data/db
     ports:
       - 27017:27017
+
+  redis:
+    image: 'redis:alpine'
+    volumes:
+      - redisdata:/data
+    ports:
+      - '6379:6379'
 
   garage:
     build:
@@ -54,5 +61,20 @@ services:
     depends_on:
       - rabbitmq
 
+  prom-pushgateway:
+    image: prom/pushgateway
+    ports:
+      - 9091:9091
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - prom-pushgateway
+
 volumes:
   mongodata:
+  redisdata:
