@@ -19,7 +19,7 @@ scrape_configs:
     static_configs:
       - targets:
           - prometheus:9090
-  - job_name: worker
+  - job_name: workers
     honor_timestamps: true
     scrape_interval: 5s
     scrape_timeout: 3s
@@ -28,3 +28,5 @@ scrape_configs:
     static_configs:
       - targets:
           - prom-pushgateway:9091
+        labels:
+          instance: '127.0.0.1:9091'
