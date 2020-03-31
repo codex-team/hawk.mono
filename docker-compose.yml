@@ -10,7 +10,7 @@ services:
       - ./api/.env:/usr/src/app/.env
       - /usr/src/app/node_modules
     ports:
-      - 4000:3000
+      - 4000:4000
     depends_on:
       - mongodb
     stdin_open: true
