@@ -54,5 +54,19 @@ services:
     depends_on:
       - rabbitmq
 
+  prom-pushgateway:
+    image: prom/pushgateway
+    ports:
+      - 9091:9091
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - prom-pushgateway
+
 volumes:
   mongodata:
