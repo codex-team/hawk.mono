@@ -23,13 +23,6 @@ services:
     ports:
       - 27017:27017
 
-  redis:
-    image: 'redis:alpine'
-    volumes:
-      - redisdata:/data
-    ports:
-      - '6379:6379'
-
   garage:
     build:
       dockerfile: Dockerfile.dev
