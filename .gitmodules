@@ -22,3 +22,6 @@
 	path = workers
 	url = https://github.com/codex-team/hawk.workers
 	branch = master
+[submodule "cron-manager"]
+	path = cron-manager
+	url = https://github.com/codex-team/hawk.cron-manager.git
