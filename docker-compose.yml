@@ -54,16 +54,19 @@ services:
     depends_on:
       - rabbitmq
 
-  mongodb-stage:
-    image: cagataygurturk/docker-ssh-tunnel:0.0.1
+  prom-pushgateway:
+    image: prom/pushgateway
     ports:
-      - 27017:27017
+      - 9091:9091
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
     volumes:
-      - $HOME/.ssh:/root/ssh:ro
-    environment:
-      TUNNEL_HOST: quantum
-      REMOTE_HOST: 172.26.0.2
-      LOCAL_PORT: 27017
-      REMOTE_PORT: 27017
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - prom-pushgateway
+
 volumes:
   mongodata:
