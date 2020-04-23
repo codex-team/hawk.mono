@@ -25,3 +25,4 @@
 [submodule "cron-manager"]
 	path = cron-manager
 	url = https://github.com/codex-team/hawk.cron-manager.git
+	branch = master
