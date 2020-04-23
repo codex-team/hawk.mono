@@ -68,5 +68,15 @@ services:
     depends_on:
       - prom-pushgateway
 
+  cron-manager:
+    build:
+      dockerfile: docker/Dockerfile.dev
+      context: ./cron-manager
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./cron-manager:/usr/src/app
+
+
 volumes:
   mongodata:
