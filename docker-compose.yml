@@ -20,6 +20,8 @@ services:
     image: mongo
     volumes:
       - mongodata:/data/db
+      - ./dump/hawk_events:/dump/hawk_events
+      - ./dump/hawk_accounts:/dump/hawk_accounts
     ports:
       - 27017:27017
 
