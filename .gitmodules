@@ -26,3 +26,7 @@
 	path = cron-manager
 	url = https://github.com/codex-team/hawk.cron-manager.git
 	branch = master
+[submodule "hawk.nodejs"]
+	path = catchers/nodejs
+	url = https://github.com/codex-team/hawk.nodejs
+	branch = hawk2.0
