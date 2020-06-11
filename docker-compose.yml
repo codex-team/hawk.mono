@@ -13,6 +13,7 @@ services:
       - 4000:4000
     depends_on:
       - mongodb
+    restart: always
     stdin_open: true
     tty: true
 
@@ -55,6 +56,7 @@ services:
       - ./collector/.env.docker:/app/.env
     depends_on:
       - rabbitmq
+    restart: always
 
   prom-pushgateway:
     image: prom/pushgateway
@@ -76,6 +78,7 @@ services:
       context: ./cron-manager
     depends_on:
       - rabbitmq
+    restart: always
     volumes:
       - ./cron-manager:/usr/src/app
 
