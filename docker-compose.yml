@@ -83,6 +83,21 @@ services:
       - ./cron-manager:/usr/src/app
       - /usr/src/app/node_modules
 
+  accounting:
+    build:
+      dockerfile: "./docker/Dockerfile.dev"
+      context: ./accounting
+    user: "node"
+    volumes:
+      - ./accounting:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3999:3999
+    stdin_open: true
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - mongodb
 
 volumes:
   mongodata:

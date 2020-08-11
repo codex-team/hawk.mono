@@ -30,3 +30,6 @@
 	path = catchers/nodejs
 	url = https://github.com/codex-team/hawk.nodejs
 	branch = hawk2.0
+[submodule "accounting"]
+	path = accounting
+	url = https://github.com/codex-team/codex-accounting
