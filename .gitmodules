@@ -33,3 +33,6 @@
 [submodule "accounting"]
 	path = accounting
 	url = https://github.com/codex-team/codex-accounting
+[submodule "types"]
+	path = types
+	url = https://github.com/codex-team/hawk.types
