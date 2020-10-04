@@ -1,12 +1,12 @@
-name: Repository Dispatch
+name: Update submodules
 on:
   repository_dispatch:
-    types: [tests]
+    types: [submodule-changed]
 jobs:
-  tests:
+  submoduleChanged:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump the client payload context
+      - name: Show payload content
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
         run: echo "$PAYLOAD_CONTEXT"
@@ -16,5 +16,27 @@ jobs:
         with:
           ref: ${{ github.event.client_payload.ref }}
 
-      - run: echo ${{ github.event.client_payload.sha }}
+      - name: Update submodules to the master branch
+        run: |
+          git submodule sync
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
 
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.MONO_TOKEN }}
+          commit-message: Update submodules
+          branch: auto-generated/cr
+          branch-suffix: timestamp
+          delete-branch: true
+          title: '[Dispatch] Update submodules'
+          body: |
+            Update report
+            - Updated with *today's* date
+            - Triggered by ${{ github.event.client_payload.ref }} (${{ github.event.client_payload.sha }})
+          labels: |
+            automated pr
+          team-reviewers: |
+            owners
+            maintainers
