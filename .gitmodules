@@ -13,7 +13,7 @@
 [submodule "hawk.javascript"]
 	path = catchers/javascript
 	url = https://github.com/codex-team/hawk.javascript
-	branch = hawk2.0
+	branch = master
 [submodule "collector"]
 	path = collector
 	url = https://github.com/codex-team/hawk.collector
