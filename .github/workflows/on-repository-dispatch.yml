@@ -7,9 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show payload content
-        env:
-          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
-        run: echo "$PAYLOAD_CONTEXT"
+        run: echo "${{ toJson(github.event.client_payload) }}"
 
       - uses: actions/checkout@v2
         if: github.event.client_payload.ref != ''
@@ -22,21 +20,13 @@ jobs:
           git submodule update --init --recursive
           git submodule update --recursive --remote
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Add changes of ${{ github.event.client_payload.path }}" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          token: ${{ secrets.MONO_TOKEN }}
-          commit-message: Update submodules
-          branch: auto-generated/cr
-          branch-suffix: timestamp
-          delete-branch: true
-          title: '[Dispatch] Update submodules'
-          body: |
-            Update report
-            - Updated with *today's* date
-            - Triggered by ${{ github.event.client_payload.ref }} (${{ github.event.client_payload.sha }})
-          labels: |
-            automated pr
-          team-reviewers: |
-            owners
-            maintainers
+          github_token: ${{ secrets.MONO_TOKEN }}
