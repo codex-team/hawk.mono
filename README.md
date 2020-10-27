@@ -63,7 +63,7 @@ Run `pull-all-submodules.ps1` script:
 ```
 
 ### Restore mongo data
-Add your dump to `dump\ ` folder and run `mongorestore.ps1` script with collection name as parameter:
+Add your dump to `dump\` folder and run `mongorestore.ps1` script with collection name as parameter:
 
 ```powershell
 # Restore accounts data:
