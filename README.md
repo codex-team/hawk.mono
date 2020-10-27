@@ -47,3 +47,28 @@ docker image rm <name>
 ```bash
 docker-compose up <service>
 ```
+
+## Executing Powershell scripts on Windows
+To use Powershell scripts, you need to change the script execution policy in the system. Execute next command in Powershell terminal as administrator:
+
+```powershell
+Set-ExecutionPolicy RemoteSigned
+```
+
+### Pull all submodules
+Run `pull-all-submodules.ps1` script:
+
+```powershell
+.\pull-all-submodules.ps1
+```
+
+### Restore mongo data
+Add your dump to `dump\` folder and run `mongorestore.ps1` script with collection name as parameter:
+
+```powershell
+# Restore accounts data:
+.\mongorestore.ps1 accounts
+
+# Restore events data:
+.\mongorestore.ps1 events 
+```
