@@ -8,7 +8,7 @@ services:
     volumes:
       - ./api:/usr/src/app
       - ./api/.env:/usr/src/app/.env
-      - /usr/src/app/node_modules
+      - api-deps:/usr/src/app/node_modules
     ports:
       - 4000:4000
     depends_on:
@@ -21,6 +21,7 @@ services:
     image: mongo
     volumes:
       - mongodata:/data/db
+      - mongo-config:/data/configdb
       - ./dump/hawk_events:/dump/hawk_events
       - ./dump/hawk_accounts:/dump/hawk_accounts
     ports:
@@ -99,5 +100,15 @@ services:
     depends_on:
       - mongodb
 
+    redis:
+      image: redis:6.0.9
+      ports:
+        - 6379:6379
+      volumes:
+        - redis-data:/data
+
 volumes:
   mongodata:
+  mongo-config:
+  api-deps:
+  redis-data:
