@@ -100,12 +100,12 @@ services:
     depends_on:
       - mongodb
 
-    redis:
-      image: redis:6.0.9
-      ports:
-        - 6379:6379
-      volumes:
-        - redis-data:/data
+  redis:
+    image: redis:6.0.9
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
 
 volumes:
   mongodata:
