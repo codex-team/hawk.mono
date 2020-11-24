@@ -22,8 +22,7 @@ services:
     volumes:
       - mongodata:/data/db
       - mongo-config:/data/configdb
-      - ./dump/hawk_events:/dump/hawk_events
-      - ./dump/hawk_accounts:/dump/hawk_accounts
+      - ./dump/:/dump/
     ports:
       - 27017:27017
 
