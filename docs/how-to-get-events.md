@@ -45,7 +45,7 @@ If you don't have a projects yes, create one:
 ## 4. Run JavaScript catcher testing page
 
 1. From the `hawk.mono` directory go to `catchers/javascirpt` directory
-2. Make sure you are on `hawk2.0` branch. Switch branch if you are on `master`
+2. Make sure you are on `master` branch. Switch to `master` branch if you are on any other branch.
 3. Open `example/index.html` in your IDE and put an Integration Token to the initialization of HawkCatcher at `token` property:
 
 ![](https://capella.pics/3c24e9c0-b8a8-40b3-a291-ef00991138ff.jpg)
