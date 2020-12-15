@@ -107,6 +107,18 @@ services:
     volumes:
       - redis-data:/data
 
+  yard:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./yard
+    volumes:
+      - ./yard:/app
+      - /app/node_modules
+    ports:
+      - 8081:3000
+    depends_on:
+      - api
+
 volumes:
   mongodata:
   mongo-config:

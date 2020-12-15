@@ -1,38 +1,41 @@
 [submodule "hawk.api.nodejs"]
 	path = api
-	url = https://github.com/codex-team/hawk.api.nodejs
+	url = git@github.com:codex-team/hawk.api.nodejs
 	branch = master
 [submodule "hawk.garage"]
 	path = garage
-	url = https://github.com/codex-team/hawk.garage
+	url = git@github.com:codex-team/hawk.garage
 	branch = master
 [submodule "hawk.registry"]
 	path = registry
-	url = https://github.com/codex-team/hawk.registry
+	url = git@github.com:codex-team/hawk.registry
 	branch = master
 [submodule "hawk.javascript"]
 	path = catchers/javascript
-	url = https://github.com/codex-team/hawk.javascript
+	url = git@github.com:codex-team/hawk.javascript
 	branch = master
 [submodule "collector"]
 	path = collector
-	url = https://github.com/codex-team/hawk.collector
+	url = git@github.com:codex-team/hawk.collector
 	branch = master
 [submodule "workers"]
 	path = workers
-	url = https://github.com/codex-team/hawk.workers
+	url = git@github.com:codex-team/hawk.workers
 	branch = master
 [submodule "cron-manager"]
 	path = cron-manager
-	url = https://github.com/codex-team/hawk.cron-manager.git
+	url = git@github.com:codex-team/hawk.cron-manager.git
 	branch = master
 [submodule "hawk.nodejs"]
 	path = catchers/nodejs
-	url = https://github.com/codex-team/hawk.nodejs
+	url = git@github.com:codex-team/hawk.nodejs
 	branch = master
 [submodule "accounting"]
 	path = accounting
-	url = https://github.com/codex-team/codex-accounting
+	url = git@github.com:codex-team/codex-accounting
 [submodule "types"]
 	path = types
-	url = https://github.com/codex-team/hawk.types
+	url = git@github.com:codex-team/hawk.types
+[submodule "yard"]
+	path = yard
+	url = https://github.com/codex-team/hawk.so/
