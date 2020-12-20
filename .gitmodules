@@ -38,4 +38,4 @@
 	url = git@github.com:codex-team/hawk.types
 [submodule "yard"]
 	path = yard
-	url = https://github.com/codex-team/hawk.so/
+	url = git@github.com:codex-team/hawk.so
