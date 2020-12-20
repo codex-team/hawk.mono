@@ -1,41 +1,41 @@
 [submodule "hawk.api.nodejs"]
-	path = api
-	url = git@github.com:codex-team/hawk.api.nodejs
-	branch = master
+    path = api
+    url = https://github.com/codex-team/hawk.api.nodejs
+    branch = master
 [submodule "hawk.garage"]
-	path = garage
-	url = git@github.com:codex-team/hawk.garage
-	branch = master
+    path = garage
+    url = https://github.com/codex-team/hawk.garage
+    branch = master
 [submodule "hawk.registry"]
-	path = registry
-	url = git@github.com:codex-team/hawk.registry
-	branch = master
+    path = registry
+    url = https://github.com/codex-team/hawk.registry
+    branch = master
 [submodule "hawk.javascript"]
-	path = catchers/javascript
-	url = git@github.com:codex-team/hawk.javascript
-	branch = master
+    path = catchers/javascript
+    url = https://github.com/codex-team/hawk.javascript
+    branch = master
 [submodule "collector"]
-	path = collector
-	url = git@github.com:codex-team/hawk.collector
-	branch = master
+    path = collector
+    url = https://github.com/codex-team/hawk.collector
+    branch = master
 [submodule "workers"]
-	path = workers
-	url = git@github.com:codex-team/hawk.workers
-	branch = master
+    path = workers
+    url = https://github.com/codex-team/hawk.workers
+    branch = master
 [submodule "cron-manager"]
-	path = cron-manager
-	url = git@github.com:codex-team/hawk.cron-manager.git
-	branch = master
+    path = cron-manager
+    url = https://github.com/codex-team/hawk.cron-manager.git
+    branch = master
 [submodule "hawk.nodejs"]
-	path = catchers/nodejs
-	url = git@github.com:codex-team/hawk.nodejs
-	branch = master
+    path = catchers/nodejs
+    url = https://github.com/codex-team/hawk.nodejs
+    branch = master
 [submodule "accounting"]
-	path = accounting
-	url = git@github.com:codex-team/codex-accounting
+    path = accounting
+    url = https://github.com/codex-team/codex-accounting
 [submodule "types"]
-	path = types
-	url = git@github.com:codex-team/hawk.types
+    path = types
+    url = https://github.com/codex-team/hawk.types
 [submodule "yard"]
-	path = yard
-	url = git@github.com:codex-team/hawk.so
+    path = yard
+    url = https://github.com/codex-team/hawk.so
