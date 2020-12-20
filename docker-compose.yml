@@ -109,15 +109,10 @@ services:
 
   yard:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./yard
-    volumes:
-      - ./yard:/app
-      - /app/node_modules
     ports:
-      - 8081:3000
-    depends_on:
-      - api
+      - 3900:80
 
 volumes:
   mongodata:
