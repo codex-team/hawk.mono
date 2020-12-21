@@ -106,6 +106,13 @@ services:
     volumes:
       - redis-data:/data
 
+  yard:
+    build:
+      dockerfile: Dockerfile
+      context: ./yard
+    ports:
+      - 3900:80
+
 volumes:
   mongodata:
   mongo-config:
