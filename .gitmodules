@@ -39,3 +39,6 @@
 [submodule "yard"]
     path = yard
     url = https://github.com/codex-team/hawk.so
+[submodule "catchers/php"]
+	path = catchers/php
+	url = https://github.com/codex-team/hawk.php
