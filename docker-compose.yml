@@ -35,8 +35,6 @@ services:
       - /app/node_modules
     ports:
       - 8080:8080
-    depends_on:
-      - api
 
   rabbitmq:
     image: rabbitmq:3-management
