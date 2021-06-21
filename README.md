@@ -18,6 +18,10 @@ If something went wrong, check this items.
 
 ### `docker-compose up` failed
 
+There can be a problems if docker has an outdated image or volume. You can try rebuild it.
+
+#### Removing and image
+
 Try this commands:
 
 ```bash
@@ -46,6 +50,28 @@ docker image rm <name>
 
 ```bash
 docker-compose up <service>
+```
+
+#### Removing a volume
+
+1. List all volumes: 
+
+```bash
+docker volume ls
+```
+
+2. Find a volume you want to remove. For example, `hawkmono_api-deps` 
+
+3. Remove volume
+
+```
+docker volume rm hawkmono_api-deps
+```
+
+4. Build
+
+```bash
+docker-compose build api
 ```
 
 ## Executing Powershell scripts on Windows
