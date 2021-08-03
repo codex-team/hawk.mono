@@ -78,6 +78,7 @@ To enable email sending from the server use your email keys.
 
 <details><summary><code>collector/.env.docker</code> -> <code>collector/.env</code></summary><p>
 - HAWK_TOKEN
+- NOTIFY_URL
 </p></details>
 
 <details><summary><code>cron-manager/config.sample.yml</code> -> <code>cron-manager/config.yml</code></summary><p>
@@ -180,9 +181,18 @@ user: `guest`
 
 pass: `guest`
 
-
 ### MongoDB
 
 You can use [MongoDB Compass](https://www.mongodb.com/try/download/compass) GUI app to access database.
 
 Connection string: `mongodb://localhost:27017/`.
+
+### Redis
+
+Use [RedisInsight](https://redislabs.com/redis-enterprise/redis-insight/) GUI to access database.
+
+Host: `localhost`
+
+Port: `6379`
+
+Name: `Hawk Local`
