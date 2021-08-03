@@ -175,7 +175,7 @@ docker-compose -f docker-compose.dev.yml up
 
 ### Rabbit MQ Management board
 
-[localhost:15672](http://localhost:15672)
+Go to [localhost:15672](http://localhost:15672)
 
 user: `guest`
 
@@ -189,7 +189,7 @@ Connection string: `mongodb://localhost:27017/`.
 
 ### Redis
 
-Use [RedisInsight](https://redislabs.com/redis-enterprise/redis-insight/) GUI to access database.
+You can use [RedisInsight](https://redislabs.com/redis-enterprise/redis-insight/) GUI to access database.
 
 Host: `localhost`
 
