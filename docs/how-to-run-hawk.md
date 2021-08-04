@@ -169,7 +169,38 @@ docker-compose -f docker-compose.dev.yml up
 
 ## Updates
 
-...
+How to apply updates to containers
+
+### Garage
+
+You can simply update any code and watch the result on the site page.
+
+To update node dependencies you should rebuild container.
+
+`docker-compose up -d --build garage`
+
+### API
+
+Code reloading is also work here as for Garage. Update the code and see results.
+
+To update node dependencies you should rebuild container.
+
+`docker-compose up -d --build api`
+
+### Yard
+
+Rebuild container
+
+`docker-compose up -d --build yard`
+
+## How to send events to local Hawk
+
+Use token for a project from your local Hawk.
+
+Set collector endpoint value:
+
+- `ws://localhost:3000/ws` for JS events
+- `http://localhost:3000/` for all other events
 
 ## Dashboards
 
@@ -196,3 +227,4 @@ Host: `localhost`
 Port: `6379`
 
 Name: `Hawk Local`
+
