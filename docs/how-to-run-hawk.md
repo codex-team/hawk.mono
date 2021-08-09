@@ -153,6 +153,8 @@ Go to [localhost:8080](http://localhost:8080/) and see the Hawk's log in page.
 
 Sign in for the first time and you'll get a password to your email.
 
+Yard is available here: [localhost:3900](http://localhost:3900/)
+
 ### Run workers
 
 Go to `workers` dir
