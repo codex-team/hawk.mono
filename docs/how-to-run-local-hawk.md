@@ -1,4 +1,4 @@
-# How to work with a hawk.mono
+# How to use hawk.mono to run local Hawk 
 
 This guide will help you to run Hawk locally for a development needs:
 
