@@ -8,7 +8,7 @@ services:
     volumes:
       - ./api:/usr/src/app
       - ./api/.env:/usr/src/app/.env
-      - api-deps:/usr/src/app/node_modules
+      - /usr/src/app/node_modules
     ports:
       - 4000:4000
     depends_on:
@@ -25,6 +25,7 @@ services:
       - ./dump/:/dump/
     ports:
       - 27017:27017
+    restart: unless-stopped
 
   garage:
     build:
@@ -35,6 +36,7 @@ services:
       - /app/node_modules
     ports:
       - 8080:8080
+    restart: unless-stopped
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -45,6 +47,7 @@ services:
       - ./registry/config/rabbit.definitions.json:/tmp/rabbit.definitions.json:ro
     environment:
       - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbitmq_management load_definitions "/tmp/rabbit.definitions.json"
+    restart: unless-stopped
 
   collector:
     build: ./collector
@@ -60,6 +63,7 @@ services:
     image: prom/pushgateway
     ports:
       - 9091:9091
+    restart: unless-stopped
 
   prometheus:
     image: prom/prometheus
@@ -69,6 +73,7 @@ services:
       - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
       - prom-pushgateway
+    restart: unless-stopped
 
   cron-manager:
     build:
@@ -103,6 +108,7 @@ services:
       - 6379:6379
     volumes:
       - redis-data:/data
+    restart: unless-stopped
 
   yard:
     build:
@@ -110,9 +116,9 @@ services:
       context: ./yard
     ports:
       - 3900:80
+    restart: unless-stopped
 
 volumes:
   mongodata:
   mongo-config:
-  api-deps:
   redis-data:
