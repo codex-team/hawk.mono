@@ -195,6 +195,12 @@ Rebuild container
 
 `docker-compose up -d --build yard`
 
+### Collector
+
+Rebuild container
+
+`docker-compose up -d --build collector`
+
 ## How to send events to local Hawk
 
 Use token for a project from your local Hawk.
