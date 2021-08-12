@@ -10,7 +10,30 @@ Let's go!
 
 ## Structure
 
-...
+* [Structure](#structure)
+* [Installation](#installation)
+  * [Preparation](#preparation)
+     * [Telegram](#telegram)
+     * [Hawk Token](#hawk-token)
+  * [Getting sources](#getting-sources)
+  * [Setting up env files](#setting-up-env-files)
+  * [Create a needed dirs](#create-a-needed-dirs)
+  * [Starting containers](#starting-containers)
+  * [Post running](#post-running)
+  * [Run the site](#run-the-site)
+  * [Run workers](#run-workers)
+* [Updates](#updates)
+  * [Sources](#sources)
+  * [Containers](#containers)
+     * [Garage](#garage)
+     * [API](#api)
+     * [Yard](#yard)
+     * [Collector](#collector)
+* [Events endpoint](#events-endpoint)
+* [Dashboards](#dashboards)
+  * [Rabbit MQ Management board](#rabbit-mq-management-board)
+  * [MongoDB](#mongodb)
+  * [Redis](#redis)
 
 ## Installation
 
@@ -171,9 +194,22 @@ docker-compose -f docker-compose.dev.yml up
 
 ## Updates
 
-How to apply updates to containers
+How to get updates for the code and apply it to containers.
 
-### Garage
+### Sources
+
+If you want to switch all submodules to the latest version
+checked in hawk.mono repo use the following command:
+
+```
+git submodule update --recursive
+```
+
+### Containers
+
+How to apply updates to containers.
+
+#### Garage
 
 You can simply update any code and watch the result on the site page.
 
@@ -181,7 +217,7 @@ To update node dependencies you should rebuild container.
 
 `docker-compose up -d --build garage`
 
-### API
+#### API
 
 Code reloading is also work here as for Garage. Update the code and see results.
 
@@ -189,19 +225,19 @@ To update node dependencies you should rebuild container.
 
 `docker-compose up -d --build api`
 
-### Yard
+#### Yard
 
 Rebuild container
 
 `docker-compose up -d --build yard`
 
-### Collector
+#### Collector
 
 Rebuild container
 
 `docker-compose up -d --build collector`
 
-## How to send events to local Hawk
+## Events endpoint
 
 Use token for a project from your local Hawk.
 
