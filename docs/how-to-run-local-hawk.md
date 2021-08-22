@@ -237,6 +237,22 @@ Rebuild container
 
 `docker-compose up -d --build collector`
 
+#### Workers
+
+Rebuild container
+
+Go to `workers` dir
+
+```
+cd workers
+```
+
+Run all workers
+
+```
+docker-compose -f docker-compose.dev.yml up --build -d
+```
+
 ## Events endpoint
 
 Use token for a project from your local Hawk.
