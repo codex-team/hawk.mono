@@ -239,15 +239,25 @@ Rebuild container
 
 #### Workers
 
-Rebuild container
-
 Go to `workers` dir
 
 ```
 cd workers
 ```
 
-Run all workers
+Stop all workers
+
+```
+docker-compose -f docker-compose.dev.yml down
+```
+
+Remove deps volume
+
+```
+docker volume rm workers_workers-deps
+```
+
+Rebuild and run containers
 
 ```
 docker-compose -f docker-compose.dev.yml up --build -d
