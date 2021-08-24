@@ -8,7 +8,7 @@ services:
     volumes:
       - ./api:/usr/src/app
       - ./api/.env:/usr/src/app/.env
-      - /usr/src/app/node_modules
+      - api-deps:/usr/src/app/node_modules
     ports:
       - 4000:4000
     depends_on:
@@ -33,7 +33,7 @@ services:
       context: ./garage
     volumes:
       - ./garage:/app
-      - /app/node_modules
+      - garage-deps:/app/node_modules
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -122,3 +122,5 @@ volumes:
   mongodata:
   mongo-config:
   redis-data:
+  api-deps:
+  garage-deps:
