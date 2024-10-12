@@ -16,6 +16,12 @@ Hawk mono repository for development needs
 
 If something went wrong, check this items.
 
+### /api dir is empty after using ./pull-all-submodules.sh
+
+```
+git submodule update --remote --merge
+```
+
 ### `docker-compose up` failed
 
 There can be a problems if docker has an outdated image or volume. You can try rebuild it.
