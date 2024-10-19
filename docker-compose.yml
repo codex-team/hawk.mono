@@ -18,7 +18,7 @@ services:
     tty: true
 
   mongodb:
-    image: mongo
+    image: mongo:6.0.2
     volumes:
       - mongodata:/data/db
       - mongo-config:/data/configdb
