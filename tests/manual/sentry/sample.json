@@ -1,0 +1,117 @@
+{
+    "event_id": "578bb342942644b3b87a2c159e93a686",
+    "sent_at": "2024-11-29T11:05:07.097039Z",
+    "trace": {
+        "trace_id": "8cf021164d244e678118a48f0181b712",
+        "environment": "production",
+        "release": "35c42f2ddf524bbdafe22439b981ddfd0fb3b5ad",
+        "public_key": "eyJpbnRlZ3JhdGlvbklkIjoiYzlmZTY1MzYtYjVkYi00NDNmLWI1MmEtMWQwNDY1OThkNDNiIiwic2VjcmV0IjoiNzAwZTAwYTQtM2E4Mi00NTQ3LTkzOGUtMTMzMGJhNzgwY2UwIn0="
+    }
+}
+{
+    "type": "event",
+    "content_type": "application/json",
+    "length": 1898
+}
+{
+    "level": "error",
+    "exception": {
+        "values": [
+            {
+                "mechanism": {
+                    "type": "excepthook",
+                    "handled": false
+                },
+                "module": null,
+                "type": "ZeroDivisionError",
+                "value": "division by zero",
+                "stacktrace": {
+                    "frames": [
+                        {
+                            "filename": "sentry-send.py",
+                            "abs_path": "/Users/nostr/dev/codex/hawk.mono/tests/manual/sentry/sentry-send.py",
+                            "function": "<module>",
+                            "module": "__main__",
+                            "lineno": 12,
+                            "pre_context": [
+                                "",
+                                "sentry_sdk.init(",
+                                "    dsn=f\"http://{HAWK_INTEGRATION_TOKEN}@localhost:3000/0\",",
+                                "    debug=True",
+                                ")"
+                            ],
+                            "context_line": "division_by_zero = 1 / 0",
+                            "post_context": [],
+                            "vars": {
+                                "__name__": "'__main__'",
+                                "__doc__": "None",
+                                "__package__": "None",
+                                "__loader__": "<_frozen_importlib_external.SourceFileLoader object at 0x104d9d020>",
+                                "__spec__": "None",
+                                "__annotations__": {},
+                                "__builtins__": "<module 'builtins' (built-in)>",
+                                "__file__": "'/Users/nostr/dev/codex/hawk.mono/tests/manual/sentry/sentry-send.py'",
+                                "__cached__": "None",
+                                "sentry_sdk": "<module 'sentry_sdk' from '/Users/nostr/dev/codex/hawk.mono/.venv/lib/python3.13/site-packages/sentry_sdk/__init__.py'>"
+                            },
+                            "in_app": true
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "event_id": "578bb342942644b3b87a2c159e93a686",
+    "timestamp": "2024-11-29T11:05:07.092339Z",
+    "contexts": {
+        "trace": {
+            "trace_id": "8cf021164d244e678118a48f0181b712",
+            "span_id": "92154e1d8745dd3f",
+            "parent_span_id": null
+        },
+        "runtime": {
+            "name": "CPython",
+            "version": "3.13.0",
+            "build": "3.13.0 (main, Oct  7 2024, 05:02:14) [Clang 16.0.0 (clang-1600.0.26.3)]"
+        }
+    },
+    "transaction_info": {},
+    "breadcrumbs": {
+        "values": []
+    },
+    "extra": {
+        "sys.argv": [
+            "sentry-send.py"
+        ]
+    },
+    "modules": {
+        "pip": "24.3.1",
+        "urllib3": "2.2.3",
+        "sentry-sdk": "2.19.0",
+        "certifi": "2024.8.30"
+    },
+    "release": "35c42f2ddf524bbdafe22439b981ddfd0fb3b5ad",
+    "environment": "production",
+    "server_name": "MacBook.local",
+    "sdk": {
+        "name": "sentry.python",
+        "version": "2.19.0",
+        "packages": [
+            {
+                "name": "pypi:sentry-sdk",
+                "version": "2.19.0"
+            }
+        ],
+        "integrations": [
+            "argv",
+            "atexit",
+            "dedupe",
+            "excepthook",
+            "logging",
+            "modules",
+            "stdlib",
+            "threading"
+        ]
+    },
+    "platform": "python"
+}
