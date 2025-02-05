@@ -1,4 +1,10 @@
-Hawk mono repository for development needs
+# Hawk
+
+Error tracking service
+
+![Right col](https://github.com/user-attachments/assets/2d97cbdc-d828-43de-85fc-c830726c60bf)
+
+This repo contains all subrepos of Hawk modules except Client SDKs (Catchers). It is used for developmnet purposes but also can be used to self-host Hawk.
 
 ## Documentation
 
