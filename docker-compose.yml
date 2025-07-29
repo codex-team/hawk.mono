@@ -7,7 +7,7 @@ services:
     user: "node"
     volumes:
       - ./api:/usr/src/app
-      - ./api/.env:/usr/src/app/.env
+      - ./api/.env.docker:/usr/src/app/.env
       - api-deps:/usr/src/app/node_modules
     ports:
       - 4000:4000
@@ -33,6 +33,7 @@ services:
       context: ./garage
     volumes:
       - ./garage:/app
+      - ./garage/.env.docker:/app/.env
       - garage-deps:/app/node_modules
     ports:
       - 8080:8080
@@ -103,9 +104,10 @@ services:
       - mongodb
 
   redis:
-    image: redis:6.0.9
+    image: redis/redis-stack:7.4.0-v6
     ports:
       - 6379:6379
+      - 8001:8001
     volumes:
       - redis-data:/data
     restart: unless-stopped
@@ -116,6 +118,14 @@ services:
       context: ./yard
     ports:
       - 3900:80
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 8002:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
     restart: unless-stopped
 
 volumes:
