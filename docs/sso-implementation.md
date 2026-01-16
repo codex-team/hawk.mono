@@ -31,7 +31,6 @@
 **Действия:**
 1. Добавить типы для новых env переменных:
    - `SSO_SP_ENTITY_ID` — уникальный идентификатор SP (например, `urn:hawk:tracker:saml`)
-   - `GARAGE_URL` — URL фронтенда (уже может быть, проверить)
 
 **Код:**
 ```typescript
@@ -44,16 +43,11 @@ declare namespace NodeJS {
      * Unique identifier for Hawk in SAML IdP configuration
      */
     SSO_SP_ENTITY_ID: string;
-    
-    /**
-     * Frontend application URL
-     */
-    GARAGE_URL: string;
   }
 }
 ```
 
-**Файл:** [`api/.env.sample`](../api/.env.sample) (создать если нет, или обновить существующий)
+**Файл:** [`api/.env.sample`](../api/.env.sample) (обновить существующий)
 
 **Действия:**
 1. Добавить примеры значений для новых переменных. С описанием.
@@ -61,7 +55,6 @@ declare namespace NodeJS {
 **Код:**
 ```
 SSO_SP_ENTITY_ID=urn:hawk:tracker:saml
-GARAGE_URL=http://localhost:8080
 ```
 
 ---
@@ -433,6 +426,7 @@ export default class UsersFactory extends AbstractModelFactory<UserDBScheme, Use
 1. Создать класс `SamlService` с методами:
    - `generateAuthnRequest(workspaceId: string, acsUrl: string, relayState: string): Promise<string>`
    - `validateAndParseResponse(samlResponse: string, workspaceId: string, acsUrl: string): Promise<SamlResponseData>`
+2. Создать утилиты для валидации
    - `validateAudience(audience: string): boolean`
    - `validateRecipient(recipient: string, expectedAcsUrl: string): boolean`
    - `validateInResponseTo(inResponseTo: string, workspaceId: string): Promise<boolean>`
@@ -475,6 +469,24 @@ export default class SamlService {
   // ... остальные методы
 }
 ```
+
+#### Валидация: модели ответственности
+
+Ответственность за валидацию (`validateAndParseResponse()`) можно формально разделить на 
+
+1.	Protocol validation (node-saml):
+  - подпись
+	- audience/recipient
+	- inResponseTo
+	- временные рамки
+	- извлечение NameID + attributes
+
+2.	Business validation (Hawk API):
+	- доступ к workspace
+	-	provisioning policy
+	-	enforcement
+	-	session TTL
+	-	security/audit logging
 
 ### 4.2 Unit тесты для SAML Service
 
@@ -542,6 +554,8 @@ class SamlStateStore {
 
 export default new SamlStateStore();
 ```
+
+### 4.4 Replace in-memory implementation of SamlStateStore with Redis
 
 ---
 
@@ -1062,8 +1076,7 @@ extend type Mutation {
 
 **Действия:**
 1. Добавить резолвер для `workspace.sso` (только для админов, не возвращать в обычных запросах)
-2. Добавить резолвер для `Query.workspaceSsoSettings`
-3. Добавить резолвер для `Mutation.updateWorkspaceSso`
+2. Добавить резолвер для `Mutation.updateWorkspaceSso`
 
 **Код:**
 ```javascript
@@ -1091,31 +1104,6 @@ Workspace: {
       /**
        * Throw ForbiddenError if user is not admin
        */
-      throw new ForbiddenError('Not enough permissions');
-    }
-    
-    return workspace.sso || null;
-  },
-},
-
-Query: {
-  /**
-   * ... existing queries
-   */
-  
-  /**
-   * Get SSO settings for workspace (admin only)
-   */
-  async workspaceSsoSettings(_obj, { workspaceId }, { user, factories }) {
-    const workspace = await factories.workspacesFactory.findById(workspaceId);
-    
-    if (!workspace) {
-      throw new UserInputError('Workspace not found');
-    }
-    
-    const member = await workspace.getMemberInfo(user.id);
-    
-    if (!member || !member.isAdmin) {
       throw new ForbiddenError('Not enough permissions');
     }
     
@@ -1656,7 +1644,7 @@ export async function updateSsoSettings(workspaceId, config) {
 
 ---
 
-## Этап 9: Реализация политики доступа (Provisioning)
+## Этап 9: Реализация политики доступа (Provisioning) — пропускаем
 
 ### 9.1 Добавление политики в Workspace
 

@@ -9,10 +9,13 @@ services:
       - ./api:/usr/src/app
       - ./api/.env:/usr/src/app/.env
       - api-deps:/usr/src/app/node_modules
+      - ./keycloak:/keycloak:ro
     ports:
       - 4000:4000
     depends_on:
+      - rabbitmq
       - mongodb
+      - redis
     restart: unless-stopped
     stdin_open: true
     tty: true
@@ -57,6 +60,7 @@ services:
       - ./collector/.env.docker:/app/.env
     depends_on:
       - rabbitmq
+      - redis
     restart: unless-stopped
 
   prom-pushgateway:
@@ -118,9 +122,34 @@ services:
       - 3900:80
     restart: unless-stopped
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HTTP_PORT=8180
+      - KC_HOSTNAME_STRICT=false
+      - KC_HOSTNAME_STRICT_HTTPS=false
+      - KC_HTTP_ENABLED=true
+      - KC_HEALTH_ENABLED=true
+    ports:
+      - 8180:8180
+    command:
+      - start-dev
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - ./keycloak:/opt/keycloak/config
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8180;echo -e 'GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n' >&3;if [ $? -eq 0 ]; then echo 'Healthcheck Successful';exit 0;else echo 'Healthcheck Failed';exit 1;fi;"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
 volumes:
   mongodata:
   mongo-config:
   redis-data:
   api-deps:
   garage-deps:
+  keycloak-data:
