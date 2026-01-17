@@ -1,0 +1,38 @@
+---
+description: Overview rules for Hawk monorepo - always applied
+alwaysApply: true
+---
+# Hawk — Project Overview
+
+Hawk is an error monitoring and observability platform for applications and services.
+It is an open-source.
+
+Primary goals of Hawk:
+- Collect, store, and analyze application errors
+- Help teams detect regressions and production issues early
+- Provide actionable context (stack traces, metadata, releases, environments)
+
+## Mono-repository structure
+
+This is a mono-repository consisting of the separate GitHub sub-repostories.
+It is used for development purposes but also can be used to self-host Hawk.
+
+## Architecture
+
+See rules for architecture in `.cursor/11-arch.mdc`.
+
+## Documentation
+
+Detailed feature documentation lives in:
+- `docs/` — source of truth for specs and flows
+
+## When modifying code
+
+Before making changes:
+1. Identify which layer you are working in: Catcher(SDK), API, Garage, Workers, Collector
+2. Check related documentation in root `docs/` directory or in the service's own `docs/` directory
+3. Preserve existing public APIs unless explicitly instructed
+
+## Full Hawk Features Overview
+
+See [Hawk Usage Guide](../docs/hawk-usage-guide-ru.md) for full features overview.

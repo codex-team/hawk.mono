@@ -1,0 +1,73 @@
+---
+description: Garage frontend rules - Vue.js 3, Vuex, GraphQL client
+globs: ["garage/**"]
+---
+
+# Hawk Garage Service - Rules for Cursor
+
+Hawk Garage (`garage/`) is web app for Hawk.
+
+## Technologies
+
+- **Vue.js 3** (Composition API + Options API)
+- **TypeScript**
+- **Vite** (builder)
+- **Vuex** (state management)
+- **Vue Router** (routing)
+- **GraphQL** (Apollo Client for API requests)
+- **Storybook** (for components)
+
+## Structure
+
+```
+garage/
+├── src/
+│   ├── components/      # Vue components
+│   ├── views/           # Pages (routes)
+│   ├── store/           # Vuex store модули
+│   ├── router/          # Vue Router configuration
+│   ├── api/             # GraphQL client and queries
+│   ├── i18n/            # Internationalization
+│   ├── styles/          # Global styles
+│   └── utils/           # Utilities
+├── public/              # Static files
+└── config/              # Configuration
+```
+
+## Components
+
+- Vue 3 components (`.vue` files)
+- Always use `<script setup>` and TypeScript for new components.
+
+## State Management (Vuex)
+
+Vuex store modules in `src/store/modules/`:
+- `user` — current user
+- `workspace` — workspaces
+- `project` — projects
+- Other modules by domains
+
+Actions types are defined in `actionTypes.js` files of modules.
+
+## API calls
+
+- Always use `api.call()` for API calls. Never use `api.callOld()`.
+- API responses should be handled on Store level. Filter and handle errors there.
+
+
+## Internationalization
+
+- Always move all UI tokens to i18n.
+- Always fill all translations in `messages/` files.
+
+## Styles
+
+- Global styles in `src/styles/`
+- Component styles via `<style>` blocks in `.vue` files
+- Possible support for CSS preprocessors
+- Always use nesting in styles.
+- Use BEM notation for component classes: 
+  - `block`
+  - `block__element`
+  - `block__element-child`
+  - `block__element-child--modifier`

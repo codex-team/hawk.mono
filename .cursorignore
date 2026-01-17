@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+
+# some docs for end-user
+docs/how-to-get-events.md
+docs/how-to-run-local-hawk.md
+docs/how-to-view-registry-queues.md
+
+# Legacy modules
+accounting/
+yard/
+
+# build output
+dist/
+build/
+coverage/
+.tmp/
+.cache/
+
+# logs & dumps
+*.log
+*.heapprofile
+*.cpuprofile
+dump/
+
+# generated data
+*.map
+*.min.js
+*.lock
+
+# sensitive data
+.env
