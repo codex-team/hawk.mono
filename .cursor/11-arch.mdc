@@ -1,0 +1,18 @@
+---
+description: Architecture rules for Hawk monorepo - always applied
+alwaysApply: true
+---
+## Architecture (high level)
+
+Hawk consists of:
+- SDKs / Catchers (JS, Node.js, PHP, Python, etc.)
+- API backend (event ingestion, processing, grouping) — GraphQL API
+- Database (events, issues, users, projects) — MongoDB
+- Garage — Web UI (dashboard, issues, charts, settings) — Vue.js 3
+- Workers — Background tasks (email, Telegram, Slack notifications) — Node.js
+- Collector — Entry point for all error events from client applications — Go
+- Accounting — it is disabled and not used, do not use it in your code and memory
+
+Some parts are split into separate repositories/packages but work as a single system.
+
+Detailed description of the system architecture is in [docs/architecture.md](../docs/architecture.md).

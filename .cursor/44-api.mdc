@@ -1,0 +1,101 @@
+---
+description: API service rules - GraphQL, models, SSO, billing
+globs: ["api/**"]
+---
+
+# Hawk API Service - Rules for Cursor
+
+Hawk API service (`api/`) is the main GraphQL API for frontend and external integrations.
+
+## Technologies
+
+- **Node.js/TypeScript**
+- **GraphQL** (Apollo Server)
+- **Express**
+- **MongoDB** (through `mongodb` driver)
+- **RabbitMQ** (for integration with workers)
+- **JWT** for authentication
+
+## Structure
+
+```
+api/
+├── src/
+│   ├── models/           # MongoDB models
+│   ├── resolvers/        # GraphQL резолверы
+│   ├── typeDefs/         # GraphQL schema
+│   ├── directives/       # GraphQL directives
+│   ├── billing/          # Billing integration
+│   ├── sso/              # SSO functionality (SAML)
+│   ├── utils/            # Utilities
+│   └── types/            # TypeScript types
+├── test/                 # Tests
+│   └── integration/      # Integration tests
+└── migrations/           # MongoDB migrations
+```
+
+## Data models
+
+Модели находятся в `src/models/`:
+- Inherit from `AbstractModel`
+- Model factories inherit from `AbstractModelFactory`
+- Use MongoDB collections directly
+
+## GraphQL
+
+- **Schema**: `src/typeDefs/` — type definitions
+- **Resolvers**: `src/resolvers/` — query logic
+- **Directives**: `src/directives/` — validation and authorization
+
+Important directives:
+- `@requireAdmin` — requires admin rights
+- `@requireUserInWorkspace` — requires user involvement in workspace
+- `@allowAnon` — allows anonymous access. Used for auth queries.
+
+## SSO (Single Sign-On)
+
+**Important**: SSO is fully described in the documentation:
+
+- **[SSO Specification](../docs/sso.md)** — full SSO functionality specification
+- **[SSO Implementation Plan](../docs/sso-implementation.md)** — detailed implementation plan
+- **[SSO Testing Guide](../docs/sso-testing-guide.md)** — testing guide
+
+## Billing
+
+We use CloudPayments for billing.
+
+Detailed documentation is in [docs/billing/README.md](../docs/billing/README.md).
+
+Code is in `src/billing/`.
+
+Cloudpayments webhooks are handled not by GraphQL, but regular express routes handlers in `src/billing/cloudpayments.ts`. 
+
+## Testing
+
+- **Unit tests**: `test/models/`, `test/resolvers/`, `test/utils/`
+- **Integration tests**: `test/integration/`
+
+
+## Migrations
+
+We need to write migration when we change the database schema.
+
+Use following command to create a new migration:
+
+```bash
+yarn migrations:create {migrationName}
+```
+
+Use following command to apply a new migration:
+
+```bash
+yarn migrations:up
+```
+
+Use following command to rollback the last migration:
+
+```bash
+yarn migrations:down
+```
+
+Migrations are stored in `migrations/` directory.
