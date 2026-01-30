@@ -69,6 +69,49 @@ services:
       - 9091:9091
     restart: unless-stopped
 
+  loki:
+    image: grafana/loki:2.9.5
+    ports:
+      - 3100:3100
+    volumes:
+      - ./loki/config/loki.yml:/etc/loki/loki.yml:ro
+      - ./loki/data:/loki
+    command:
+      - -config.file=/etc/loki/loki.yml
+    restart: unless-stopped
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.98.0
+    ports:
+      - 4317:4317
+      - 4318:4318
+    environment:
+      - LOKI_ENDPOINT=${LOKI_ENDPOINT}
+      - LOKI_AUTH_HEADER=${LOKI_AUTH_HEADER}
+      - GRAFANA_CLOUD_LOKI_USER=${GRAFANA_CLOUD_LOKI_USER}
+      - GRAFANA_CLOUD_LOKI_API_KEY=${GRAFANA_CLOUD_LOKI_API_KEY}
+    volumes:
+      - ./loki/otel-collector/config.yml:/etc/otel-collector/config.yml:ro
+    command:
+      - --config=/etc/otel-collector/config.yml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:10.4.3
+    ports:
+      - 3001:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_DEFAULT_THEME=light
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/collector-logs.json
+    volumes:
+      - ./loki/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./loki/grafana/data:/var/lib/grafana
+    depends_on:
+      - loki
+    restart: unless-stopped
+
   prometheus:
     image: prom/prometheus
     ports:
