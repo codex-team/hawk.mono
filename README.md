@@ -18,6 +18,40 @@ This repo contains all subrepos of Hawk modules except Client SDKs (Catchers). I
 2. Create `.env` file in those repositories where there is `.env.sample` file.
 3. Run `docker-compose up` to run all hawk services or list only the necessary services in the command above.
 
+## Logging (Loki + Grafana)
+
+Grafana runs in Docker Compose and ships with a provisioned Logs dashboard that opens by default.
+
+### Local Loki (default)
+
+1. Copy `.env.sample` to `.env` (or update your existing `.env`) and keep the local values:
+
+```
+LOKI_ENDPOINT=http://loki:3100/loki/api/v1/push
+LOKI_AUTH_HEADER=
+GRAFANA_CLOUD_LOKI_USER=
+GRAFANA_CLOUD_LOKI_API_KEY=
+```
+
+2. Start services: `docker-compose up`
+3. Open Grafana: `http://localhost:3001`  
+   User: `admin`  Password: `admin`
+
+### Grafana Cloud Loki
+
+1. In `.env`, comment the local `LOKI_ENDPOINT` and set the cloud values:
+
+```
+# LOKI_ENDPOINT=http://loki:3100/loki/api/v1/push
+LOKI_ENDPOINT=https://<your-cloud-host>/loki/api/v1/push
+GRAFANA_CLOUD_LOKI_USER=<your_cloud_loki_user_id>
+GRAFANA_CLOUD_LOKI_API_KEY=<your_api_key>
+```
+
+2. Start services: `docker-compose up`
+3. Open Grafana: `http://localhost:3001`  
+   User: `admin`  Password: `admin`
+
 ## Troubleshooting
 
 If something went wrong, check this items.

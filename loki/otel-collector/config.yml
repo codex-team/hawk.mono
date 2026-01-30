@@ -1,0 +1,52 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+  transform/add-log-id:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        statements:
+          - set(attributes["log_id"], UUID())
+  resource/ensure-service-name:
+    attributes:
+      - action: insert
+        key: service.name
+        value: collector
+      - action: insert
+        key: deployment_environment
+        value: local
+      - action: insert
+        key: loki.resource.labels
+        value: service.name, deployment_environment
+  batch:
+
+extensions:
+  basicauth/grafana_cloud:
+    client_auth:
+      username: ${env:GRAFANA_CLOUD_LOKI_USER}
+      password: ${env:GRAFANA_CLOUD_LOKI_API_KEY}
+
+exporters:
+  debug:
+    verbosity: detailed
+  loki:
+    # Example: https://logs-prod-012.grafana.net/loki/api/v1/push
+    endpoint: ${env:LOKI_ENDPOINT}
+    auth:
+      authenticator: basicauth/grafana_cloud
+
+    default_labels_enabled:
+      exporter: false
+      job: false
+
+service:
+  extensions: [basicauth/grafana_cloud]
+  pipelines:
+    logs:
+      receivers: [otlp]
+      processors: [transform/add-log-id, resource/ensure-service-name, batch]
+      exporters: [debug, loki]
