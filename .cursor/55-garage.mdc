@@ -34,11 +34,6 @@ garage/
 └── config/              # Configuration
 ```
 
-## Components
-
-- Vue 3 components (`.vue` files)
-- Always use `<script setup>` and TypeScript for new components.
-
 ## State Management (Vuex)
 
 Vuex store modules in `src/store/modules/`:
@@ -48,17 +43,6 @@ Vuex store modules in `src/store/modules/`:
 - Other modules by domains
 
 Actions types are defined in `actionTypes.js` files of modules.
-
-## API calls
-
-- Always use `api.call()` for API calls. Never use `api.callOld()`.
-- API responses should be handled on Store level. Filter and handle errors there.
-
-
-## Internationalization
-
-- Always move all UI tokens to i18n.
-- Always fill all translations in `messages/` files.
 
 ## Styles
 

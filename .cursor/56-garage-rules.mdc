@@ -1,0 +1,18 @@
+---
+alwaysApply: true
+globs: ["garage/**"]
+---
+
+- Always use `UiButton` component for buttons.
+- Always use `<script setup>` for components.
+- Always use TypeScript for components.
+
+## API calls
+
+- Always use `api.call()` for API calls. Never use `api.callOld()`.
+- API responses should be handled on Store (Vuex) level. Filter and handle errors there.
+
+## Internationalization
+
+- Always move all UI tokens to i18n.
+- Always fill all translations in `messages/` files.

@@ -1,3 +1,42 @@
 ---
+description: Style rules for Hawk monorepo - always applied
 alwaysApply: true
 ---
+
+1. Write clean, readable code
+2. Do not duplicate code blocks, reuse existing code if possible
+3. Write simple yet straightforward comments to each logic block, function, class, propert, interface, constant, etc.
+4. Always use block-style comments. Even for one liners.
+6. Common types that are used across Garage / API / Workers / Catchers should be placed in [@hawk.so/types](../types) package.
+
+## Classes
+
+Do not create and export class instance in the same file where class is defined.
+Create a separate file for the class instance and export it.
+
+Do not do like that:
+
+```typescript
+export class MyClass {
+  constructor() {
+    // ...
+  }
+}
+
+export const myClassInstance = new MyClass();
+```
+
+Do like that:
+
+```typescript
+export class MyClass {
+  constructor() {
+    // ...
+  }
+}
+```
+
+## TypeScript
+
+- Do not cast types to `any` and `unknown`.
+- Place private methods below public methods in classes.

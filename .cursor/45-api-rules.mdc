@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+globs: ["api/**"]
+---
+
+- Для отладочных логов в консоль использовать метод `sgr` для цветного вывода важных данных.
+
+Пример:
+
+```ts
+this.log('warn', 'SSO not enabled for workspace:', sgr(workspaceId, Effect.ForegroundCyan));
+```
