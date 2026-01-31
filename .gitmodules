@@ -42,3 +42,7 @@
 [submodule "catchers/php"]
 	path = catchers/php
 	url = https://github.com/codex-team/hawk.php
+[submodule "utils"]
+	path = utils
+	url = https://github.com/codex-team/hawk.utils
+	branch = main
