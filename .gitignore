@@ -2,3 +2,5 @@
 .DS_Store
 dump
 .env
+loki/data/
+loki/grafana/data/
