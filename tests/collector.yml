@@ -1,0 +1,19 @@
+version: "3.2"
+services:
+
+  collector:
+    build: ../collector
+    volumes:
+      - ./collector/.env:/app/.env
+    depends_on:
+      - rabbitmq
+
+  integration-test:
+    build: ./collector
+    volumes:
+      - ./collector/test.py:/usr/src/app/test.py
+    depends_on:
+      - collector
+
+volumes:
+  mongodata:
